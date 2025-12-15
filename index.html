@@ -7,11 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* 自定義顏色與字體 */
+        /* 核心主題色：紐西蘭國旗藍 */
         :root { 
-            --nz-blue: #005596; 
-            --nz-green: #48a045; 
-            --nz-orange: #f59e0b; 
+            --nz-blue-dark: #00247D; /* 國旗藍 */
+            --nz-blue-light: #1e40af; /* 深藍色調 */
             --bg-light: #f3f4f6;
         }
         body { 
@@ -26,22 +25,17 @@
         .glass-nav { 
             background: rgba(255, 255, 255, 0.9); 
             backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px); /* For Safari */
+            -webkit-backdrop-filter: blur(10px);
             position: fixed; 
             bottom: 0; 
             width: 100%; 
             border-top: 1px solid #e5e7eb; 
             z-index: 50; 
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
         }
-        /* 卡片設計 */
-        .card { transition: transform 0.2s ease-in-out; }
-        .card:active { transform: scale(0.98); } /* 點擊時的App動態回饋 */
-        .card-image { 
-            height: 150px; 
-            background-size: cover; 
-            background-position: center; 
-            border-radius: 1rem 1rem 0 0;
-        }
+        .card { transition: transform 0.2s ease-in-out; background-color: white; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        .card:active { transform: scale(0.98); }
+
         /* 標籤設計 */
         .tag { padding: 4px 10px; border-radius: 99px; font-size: 12px; font-weight: bold; margin-right: 8px; white-space: nowrap; }
         .tag-transport { background-color: #dbeafe; color: #1e40af; } /* 交通 */
@@ -49,13 +43,17 @@
         .tag-activity { background-color: #d1fae5; color: #065f46; } /* 景點/活動 */
         .tag-info { background-color: #fef3c7; color: #92400e; } /* 住宿/預約 */
         /* 導遊攻略區 */
-        .guide-tip { background-color: #fefce8; border-left: 4px solid #fcd34d; padding: 12px; border-radius: 0 0.5rem 0.5rem 0; margin-top: 16px; }
+        .guide-tip { background-color: #f6f8ff; border-left: 4px solid var(--nz-blue-light); padding: 12px; border-radius: 0 0.5rem 0.5rem 0; margin-top: 16px; }
+
+        /* 新增購物清單樣式 */
+        .shop-item { border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; margin-bottom: 12px; }
+        .shop-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     </style>
 </head>
 <body>
 
     <header class="bg-white p-4 pt-6 sticky top-0 z-40 border-b border-gray-100 shadow-sm">
-        <h1 class="text-2xl font-bold text-gray-800">🇳🇿 南島純淨之夏 2026</h1>
+        <h1 class="text-2xl font-bold text-gray-800" style="color: var(--nz-blue-dark);">🇳🇿 紐西蘭南島之旅 2026</h1>
         <p class="text-sm text-gray-500">旅行時間：1月21日 - 1月31日</p>
     </header>
 
@@ -66,38 +64,75 @@
 
         <div id="info" class="tab-content space-y-4">
             <h2 class="text-lg font-bold text-gray-700 mt-2">✈️ 住宿與航班資訊總覽</h2>
-            
-            <div class="bg-white p-5 rounded-2xl shadow-md card">
-                <h3 class="font-extrabold text-xl mb-3 text-blue-700"><i class="fa-solid fa-plane-departure mr-2"></i>航班資訊</h3>
+            <div class="card p-5">
+                <h3 class="font-extrabold text-xl mb-3" style="color: var(--nz-blue-dark);"><i class="fa-solid fa-plane-departure mr-2"></i>航班資訊</h3>
                 <div class="text-sm space-y-3 border-l-4 border-blue-200 pl-4">
-                    <p><strong>1/21 去程:</strong> TPE 14:10 → SIN → CHC 10:40+1</p>
-                    <p><strong>轉機提醒:</strong> 新加坡轉機僅 55 分鐘，行李直掛，請快速移動。</p>
+                    <p><strong>1/21 去程:</strong> TPE 14:10 → SIN (轉機 55m) → CHC 10:40+1</p>
                     <p><strong>1/22 國內:</strong> CHC 16:25 → HKK 17:10 (NZ5832)</p>
                     <p><strong>1/31 回程:</strong> CHC 01:05 → SIN → TPE 12:55</p>
                 </div>
             </div>
-
-            <div class="bg-white p-5 rounded-2xl shadow-md card">
+            <div class="card p-5">
                 <h3 class="font-extrabold text-xl mb-3 text-green-700"><i class="fa-solid fa-house-chimney mr-2"></i>住宿清單</h3>
                 <div class="text-sm space-y-3 border-l-4 border-green-200 pl-4">
-                    <div>
-                        <p class="font-bold text-base">Hokitika / HKK 市區飯店</p>
+                    <div><p class="font-bold text-base">Fox Glacier: Rainforest Motel</p><p class="text-gray-500">15 Cook Flat Road</p></div>
+                    <div><p class="font-bold text-base">Tekapo: Galaxy / Peppers Blue Water</p><p class="text-gray-500">觀星最佳住宿選擇</p></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="shopping" class="tab-content space-y-4">
+            <h2 class="text-lg font-bold text-gray-700 mt-2">🛍️ 購物清單與伴手禮推薦</h2>
+            <div class="card p-5">
+                <p class="mb-4 text-sm text-gray-600">以下為紐西蘭人氣伴手禮，建議在超市（Countdown/Pak'nSave/New World）或機場購買，價格會較優惠。</p>
+                <div class="space-y-4">
+                    <div class="shop-item">
+                        <p class="font-extrabold text-lg text-red-600">麥蘆卡蜂蜜 (Manuka Honey)</p>
+                        <p class="text-sm">**必買等級：A++**。具備獨特抗菌活性（UMF或MGO指標），送禮自用皆宜。購買時請認明 UMF 或 MGO 標籤。</p>
+                        <p class="text-xs text-gray-500 mt-1">🛒 購買地點：藥妝店、大型超市。</p>
                     </div>
-                    <div>
-                        <p class="font-bold text-base">Fox Glacier: Rainforest Motel</p>
-                        <p class="text-gray-500">15 Cook Flat Road (近冰河報到處)</p>
+                    <div class="shop-item">
+                        <p class="font-extrabold text-lg text-orange-600">Whittaker's 巧克力</p>
+                        <p class="text-sm">紐西蘭國民巧克力，推薦 **花生醬 (Peanut Butter)** 或 **椰子 (Coconut)** 口味。</p>
+                        <p class="text-xs text-gray-500 mt-1">🛒 購買地點：各大超市（最便宜）、便利店。</p>
                     </div>
-                    <div>
-                        <p class="font-bold text-base">Tekapo: Galaxy / Peppers Blue Water</p>
-                        <p class="text-gray-500">絕佳觀星位置</p>
+                    <div class="shop-item">
+                        <p class="font-extrabold text-lg text-green-600">Merino 羊毛製品</p>
+                        <p class="text-sm">美麗諾羊毛材質輕盈保暖，圍巾、襪子或內衣都是很好的選擇，特別適合在 **Wanaka** 或 **Queenstown** 的精品店購買。</p>
+                        <p class="text-xs text-gray-500 mt-1">🛒 購買地點：Wanaka/CHC 專賣店、機場免稅店。</p>
                     </div>
+                    <div class="shop-item">
+                        <p class="font-extrabold text-lg text-blue-600">L&P 汽水與 kiwifruit 奇異果</p>
+                        <p class="text-sm">L&P 是紐西蘭特有的檸檬與派 (Lemon & Paeroa) 汽水；奇異果則是當地特產，新鮮又美味！</p>
+                        <p class="text-xs text-gray-500 mt-1">🛒 購買地點：任何超市。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="history" class="tab-content space-y-4">
+            <h2 class="text-lg font-bold text-gray-700 mt-2">📜 歷史概覽與文化須知</h2>
+            <div class="card p-5 space-y-4">
+                <div class="space-y-2">
+                    <h3 class="font-extrabold text-xl" style="color: var(--nz-blue-dark);">紐西蘭簡史：毛利與殖民</h3>
+                    <p class="text-sm">紐西蘭（Aotearoa）最早的居民是**毛利人**，他們約在 13 世紀從玻里尼西亞乘著獨木舟抵達。1840 年簽訂的**懷唐伊條約 (Treaty of Waitangi)** 是現代紐西蘭的基礎，確立了英國主權，同時保障了毛利人的土地和權利，但至今仍是討論的焦點。</p>
+                </div>
+                
+                <div class="space-y-2 pt-4 border-t border-dashed">
+                    <h3 class="font-extrabold text-xl text-green-700">旅途中的在地習慣 (入境隨俗)</h3>
+                    <ul class="list-disc ml-5 text-sm space-y-2">
+                        <li>**問候與尊重 (毛利文化)**：在正式場合，毛利人可能使用傳統的**鼻吻禮 (Hongi)**，但一般場合握手即可。對毛利文化場所和藝術品應保持尊重，未經允許不要觸碰。</li>
+                        <li>**環保意識 (純淨之國)**：紐西蘭人極度重視環境。請務必遵守 **「留下腳印，帶走回憶」** 的原則。垃圾必須分類或帶走，不要在野外餵食或觸摸動物。</li>
+                        <li>**小費習慣**：紐西蘭**沒有**給小費的習慣！除非您受到非常優質的服務（如高級餐廳或特殊導覽），否則不必給小費。</li>
+                        <li>**鞋子文化**：在進入很多私人住宅或毛利人的集會場所 (Marae) 時，習慣**脫鞋**。</li>
+                        <li>**交通禮儀**：在公車上或公共場合，人們通常安靜且互相禮讓。在鄉間道路駕駛時，請留意並讓行超車的車輛。</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
         <div id="emergency" class="tab-content space-y-4">
             <h2 class="text-lg font-bold text-gray-700 mt-2">📞 緊急聯絡與重要代號</h2>
-            
             <div class="bg-red-50 p-6 rounded-2xl border-2 border-red-300 shadow-md">
                 <h3 class="text-red-700 font-extrabold text-2xl mb-4 text-center">🚨 紐西蘭緊急電話</h3>
                 <a href="tel:111" class="block w-full bg-red-600 hover:bg-red-700 text-white text-center py-4 rounded-xl font-bold text-2xl mb-4 transition duration-200">
@@ -112,13 +147,21 @@
     </main>
 
     <nav class="glass-nav flex justify-around py-3">
-        <button id="nav-itinerary" onclick="switchTab('itinerary', this)" class="flex flex-col items-center text-blue-600">
+        <button id="nav-itinerary" onclick="switchTab('itinerary', this)" class="flex flex-col items-center text-lg" style="color: var(--nz-blue-dark);">
             <i class="fa-solid fa-calendar-day text-xl"></i>
-            <span class="text-[10px] mt-1">每日行程</span>
+            <span class="text-[10px] mt-1">行程</span>
         </button>
         <button id="nav-info" onclick="switchTab('info', this)" class="flex flex-col items-center text-gray-400">
             <i class="fa-solid fa-info-circle text-xl"></i>
             <span class="text-[10px] mt-1">住宿航班</span>
+        </button>
+        <button id="nav-shopping" onclick="switchTab('shopping', this)" class="flex flex-col items-center text-gray-400">
+            <i class="fa-solid fa-basket-shopping text-xl"></i>
+            <span class="text-[10px] mt-1">購物清單</span>
+        </button>
+        <button id="nav-history" onclick="switchTab('history', this)" class="flex flex-col items-center text-gray-400">
+            <i class="fa-solid fa-book-open text-xl"></i>
+            <span class="text-[10px] mt-1">歷史概覽</span>
         </button>
         <button id="nav-emergency" onclick="switchTab('emergency', this)" class="flex flex-col items-center text-gray-400">
             <i class="fa-solid fa-phone-flip text-xl"></i>
@@ -131,18 +174,16 @@
         const travelData = [
             {
                 day: "Day 1 & 2", date: "01/21 (三) - 22 (四)", loc: "啟航/抵達 Hokitika", weather: "20°C 🌤️",
-                image: "https://images.unsplash.com/photo-1510257088463-c793f773663a?fit=crop&w=800&q=80",
                 items: [
                     { type: "trans", time: "14:10", desc: "TPE 飛往 SIN (轉機 55m) → CHC" },
-                    { type: "trans", time: "16:25", desc: "國內線 CHC → HKK (赫基蒂卡)" },
-                    { type: "food", desc: "必吃美食: Hokitika - Fat Pipi Pizza" },
-                    { type: "activity", desc: "景點: Hokitika 海灘地標、淘金博物館" }
+                    { type: "trans", time: "16:25", desc: "國內線 CHC → HKK 赫基蒂卡 (NZ5832)" },
+                    { type: "food", desc: "必吃美食: Hokitika - Fat Pipi Pizza (銀魚披薩)" },
+                    { type: "activity", desc: "景點: Hokitika 海灘地標" }
                 ],
-                tips: "轉機時間短，請注意登機門；抵達 CHC 務必申報所有食物與戶外用品。"
+                tips: "轉機時間短，請務必快速移動。入境 CHC 務必對農產品進行誠實申報。"
             },
             {
                 day: "Day 3 & 4", date: "01/23 (五) - 24 (六)", loc: "Fox Glacier 冰河小鎮", weather: "17°C ☁️",
-                image: "https://images.unsplash.com/photo-1610416629986-7a70a80b06b0?fit=crop&w=800&q=80",
                 items: [
                     { type: "trans", time: "15:00", desc: "InterCity 巴士 HKK → Fox Glacier ($198 NZD)" },
                     { type: "info", desc: "住宿: Rainforest Motel (已預訂)" },
@@ -153,29 +194,26 @@
             },
             {
                 day: "Day 5 & 6", date: "01/25 (日) - 26 (一)", loc: "Wanaka 湖畔樂活", weather: "25°C ☀️",
-                image: "https://images.unsplash.com/photo-1524381048895-09825b07223b?fit=crop&w=800&q=80",
                 items: [
                     { type: "trans", time: "08:35", desc: "InterCity 巴士 Fox Glacier → Wanaka ($378 NZD)" },
-                    { type: "activity", desc: "景點: That Wanaka Tree (孤獨樹)" },
-                    { type: "food", desc: "必吃美食: Vudu Cafe 早餐 / Patagonia Chocolates" },
+                    { type: "activity", desc: "景點: That Wanaka Tree (孤獨樹) / 市區逛街" },
+                    { type: "food", desc: "必吃美食: Vudu Cafe 早餐 / Patagonia Chocolates 冰淇淋" },
                     { type: "activity", time: "17:30", desc: "體驗: Happy Hour Cruise 湖上遊船 (1hr)" }
                 ],
                 tips: "<b>必點菜單</b>: 遊船上的當地 Pinot Noir 紅酒。<b>必買伴手禮</b>: 當地 Merino 羊毛製品。"
             },
             {
                 day: "Day 7 & 8", date: "01/27 (二) - 28 (三)", loc: "Tekapo 星空小鎮", weather: "22°C ✨",
-                image: "https://images.unsplash.com/photo-1601614741369-1c93a0259b3a?fit=crop&w=800&q=80",
                 items: [
                     { type: "trans", time: "08:30", desc: "InterCity 巴士 Wanaka → Tekapo ($303 NZD)" },
                     { type: "activity", desc: "景點: 牧羊人教堂 / 湖畔魯冰花 (末期)" },
-                    { type: "food", desc: "必吃美食: Kohan Japanese (鮭魚丼飯)" },
+                    { type: "food", desc: "必吃美食: Kohan Japanese (鮭魚丼飯必點)" },
                     { type: "activity", desc: "核心行程: 約翰山天文台觀星導覽" }
                 ],
                 tips: "Tekapo 是國際暗空保護區，晚上觀星務必注意保暖，並攜帶紅光手電筒。"
             },
             {
                 day: "Day 9 & 10", date: "01/29 (四) - 30 (五)", loc: "Christchurch 花園城市", weather: "21°C ⛅",
-                image: "https://images.unsplash.com/photo-1549419142-6e1189d533b3?fit=crop&w=800&q=80",
                 items: [
                     { type: "trans", time: "12:50", desc: "InterCity 巴士 Tekapo → Christchurch ($204 NZD)" },
                     { type: "activity", desc: "景點: 基督城植物園、雅芳河撐篙船" },
@@ -186,7 +224,6 @@
             },
             {
                 day: "Day 11", date: "01/31 (六)", loc: "賦歸", weather: "桃園 18°C ☁️",
-                image: "https://images.unsplash.com/photo-1621946864190-67c87c4b12c5?fit=crop&w=800&q=80",
                 items: [
                     { type: "trans", time: "01:05", desc: "CHC → SIN (新加坡)" },
                     { type: "trans", time: "08:30", desc: "SIN → TPE (桃園)" },
@@ -201,12 +238,11 @@
         // 渲染行程卡片的函數
         function renderItinerary() {
             const container = document.getElementById('itinerary');
-            container.innerHTML = ''; // 清空舊內容
+            container.innerHTML = ''; 
             travelData.forEach(d => {
                 const card = document.createElement('div');
-                card.className = "bg-white rounded-2xl shadow-lg card overflow-hidden";
+                card.className = "card p-4";
                 
-                // 內層 HTML 結構
                 let itemsHtml = d.items.map(i => `
                     <div class="flex items-start mb-2">
                         <span class="tag ${i.type === 'trans' ? 'tag-transport' : i.type === 'food' ? 'tag-food' : i.type === 'activity' ? 'tag-activity' : 'tag-info'}">${i.time || (i.type === 'food' ? '美食' : i.type === 'activity' ? '景點' : '資訊')}</span>
@@ -215,25 +251,22 @@
                 `).join('');
                 
                 card.innerHTML = `
-                    <div class="card-image" style="background-image: url('${d.image}');"></div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-center mb-3 border-b pb-2">
-                            <div>
-                                <h2 class="text-xl font-extrabold text-gray-800">${d.day} / ${d.loc}</h2>
-                                <span class="text-xs font-semibold text-blue-600">${d.date}</span>
-                            </div>
-                            <div class="text-right text-orange-500 font-bold text-sm bg-yellow-100 px-3 py-1 rounded-full shadow-inner">${d.weather}</div>
+                    <div class="flex justify-between items-center mb-3 border-b pb-2">
+                        <div>
+                            <h2 class="text-xl font-extrabold text-gray-800">${d.day} / ${d.loc}</h2>
+                            <span class="text-xs font-semibold" style="color: var(--nz-blue-dark);">${d.date}</span>
                         </div>
-                        
-                        <div class="space-y-3">
-                            ${itemsHtml}
-                        </div>
+                        <div class="text-right text-orange-600 font-bold text-sm bg-yellow-100 px-3 py-1 rounded-full shadow-inner">${d.weather}</div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        ${itemsHtml}
+                    </div>
 
-                        <div class="guide-tip">
-                            <i class="fa-solid fa-lightbulb text-yellow-500 mr-2"></i>
-                            <span class="text-sm text-gray-700 font-semibold">導遊攻略：</span>
-                            <p class="text-xs text-gray-600 mt-1">${d.tips}</p>
-                        </div>
+                    <div class="guide-tip">
+                        <i class="fa-solid fa-lightbulb text-blue-500 mr-2"></i>
+                        <span class="text-sm text-gray-700 font-semibold">導遊攻略：</span>
+                        <p class="text-xs text-gray-600 mt-1">${d.tips}</p>
                     </div>
                 `;
                 container.appendChild(card);
@@ -246,9 +279,9 @@
             document.getElementById(tabId).classList.add('active');
             
             // 處理底部導航欄按鈕顏色
-            document.querySelectorAll('nav button').forEach(btn => btn.classList.replace('text-blue-600', 'text-gray-400'));
+            document.querySelectorAll('nav button').forEach(btn => btn.style.color = 'rgb(107, 114, 128)'); // 設為灰色
             if (button) {
-                button.classList.replace('text-gray-400', 'text-blue-600');
+                button.style.color = 'var(--nz-blue-dark)'; // 設為主題藍色
             }
         }
 
