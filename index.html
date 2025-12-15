@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>紐西蘭南島之旅 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --nz-blue: #005596; --nz-green: #2d5a27; --nz-orange: #f59e0b; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f3f4f6; padding-bottom: 80px; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); position: fixed; bottom: 0; width: 100%; border-top: 1px solid #e5e7eb; z-index: 50; }
+        .card-shadow { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+        .tag-must-eat { background-color: #fee2e2; color: #dc2626; padding: 2px 8px; border-radius: 99px; font-size: 12px; font-weight: bold; }
+        .tag-transport { background-color: #dbeafe; color: #2563eb; padding: 2px 8px; border-radius: 99px; font-size: 12px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <header class="bg-[#005596] text-white p-6 rounded-b-3xl card-shadow">
+        <h1 class="text-2xl font-bold">New Zealand Summer</h1>
+        <p class="opacity-80 text-sm">2026.01.21 - 01.31 南島純淨之旅</p>
+    </header>
+
+    <main class="p-4" id="main-container">
+        
+        <div id="itinerary" class="tab-content active space-y-6">
+            </div>
+
+        <div id="info" class="tab-content space-y-4">
+            <div class="bg-white p-4 rounded-2xl card-shadow">
+                <h3 class="font-bold text-lg mb-2 text-blue-800"><i class="fa-solid fa-plane mr-2"></i>航班資訊</h3>
+                <div class="text-sm space-y-2 border-l-2 border-blue-200 pl-3">
+                    <p><strong>1/21 去程:</strong> SQ877 14:10 TPE → SIN (轉機 55m) → SQ297 10:40+1 CHC</p>
+                    <p><strong>1/22 國內:</strong> NZ5832 16:25 CHC → 17:10 HKK</p>
+                    <p><strong>1/31 回程:</strong> SQ296 01:05 CHC → 12:55 TPE</p>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-2xl card-shadow">
+                <h3 class="font-bold text-lg mb-2 text-green-800"><i class="fa-solid fa-hotel mr-2"></i>住宿資訊</h3>
+                <div class="text-sm space-y-3">
+                    <div class="border-b pb-2">
+                        <p class="font-bold">Fox Glacier: Rainforest Motel</p>
+                        <p class="text-gray-500">15 Cook Flat Road, Fox Glacier 7859</p>
+                    </div>
+                    <div class="border-b pb-2">
+                        <p class="font-bold">Tekapo: Galaxy Boutique Hotel</p>
+                        <p class="text-gray-500">銀河精品飯店 - 靠近約翰山天文台</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="emergency" class="tab-content space-y-4">
+            <div class="bg-red-50 p-6 rounded-2xl border-2 border-red-200">
+                <h3 class="text-red-700 font-bold text-xl mb-4 text-center">🆘 緊急救援</h3>
+                <a href="tel:111" class="block w-full bg-red-600 text-white text-center py-4 rounded-xl font-bold text-2xl mb-4">撥打 111 (報警/急救)</a>
+                <div class="space-y-4 text-sm">
+                    <p class="flex justify-between"><span>駐紐西蘭代表處</span> <span class="font-mono font-bold">+64-27-440-0678</span></p>
+                    <p class="flex justify-between"><span>InterCity 巴士客服</span> <span class="font-mono font-bold">+64-9-583-5780</span></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <nav class="glass-nav flex justify-around py-3">
+        <button onclick="switchTab('itinerary')" class="flex flex-col items-center text-blue-600">
+            <i class="fa-solid fa-calendar-day text-xl"></i>
+            <span class="text-[10px] mt-1">每日行程</span>
+        </button>
+        <button onclick="switchTab('info')" class="flex flex-col items-center text-gray-400">
+            <i class="fa-solid fa-info-circle text-xl"></i>
+            <span class="text-[10px] mt-1">住宿航班</span>
+        </button>
+        <button onclick="switchTab('emergency')" class="flex flex-col items-center text-gray-400">
+            <i class="fa-solid fa-phone-flip text-xl"></i>
+            <span class="text-[10px] mt-1">緊急聯絡</span>
+        </button>
+    </nav>
+
+    <script>
+        // 後台數據：您可以在這裡輕鬆更改內容
+        const travelData = [
+            {
+                day: "Day 1-2", date: "01/21-22", loc: "抵達基督城 / 赫基蒂卡", weather: "22°C ☀️",
+                items: [
+                    { type: "trans", time: "14:10", desc: "TPE 飛往 CHC (新加坡轉機)" },
+                    { type: "trans", time: "16:25", desc: "國內線 CHC → HKK 赫基蒂卡" },
+                    { type: "food", desc: "必吃: Fat Pipi Pizza 銀魚披薩" }
+                ],
+                tips: "下飛機記得去取 <b>NZeTA</b> 簽證與申報單。"
+            },
+            {
+                day: "Day 3", date: "01/23", loc: "前往 Fox Glacier", weather: "18°C ☁️",
+                items: [
+                    { type: "trans", time: "15:00", desc: "InterCity 巴士前往 Fox Glacier ($198 NZD)" },
+                    { type: "info", desc: "住宿: Rainforest Motel (近櫃台 4min)" }
+                ],
+                tips: "<b>預約代號:</b> 請確認 InterCity 訂單郵件。"
+            },
+            {
+                day: "Day 4", date: "01/24", loc: "冰河健行", weather: "16°C 🏔️",
+                items: [
+                    { type: "activity", desc: "核心行程: 冰河健走 + 直升機 (Heli-Hike)" },
+                    { type: "activity", desc: "景點: 馬西森湖 Lake Matheson 倒影" }
+                ],
+                tips: "<b>必點:</b> 冰河咖啡館熱巧克力。健行需準備墨鏡防眩光。"
+            },
+            {
+                day: "Day 5-6", date: "01/25-26", loc: "瓦納卡 Wanaka", weather: "24°C ☀️",
+                items: [
+                    { type: "trans", time: "08:35", desc: "巴士前往 Wanaka ($378 NZD)" },
+                    { type: "activity", time: "17:30", desc: "Happy Hour Cruise 瓦納卡湖遊船" },
+                    { type: "activity", desc: "必拍: That Wanaka Tree 孤獨樹" }
+                ],
+                tips: "<b>必吃美食:</b> Patagonia Chocolates 冰淇淋。"
+            },
+            {
+                day: "Day 7-8", date: "01/27-28", loc: "特卡波 Tekapo", weather: "20°C ✨",
+                items: [
+                    { type: "trans", time: "08:30", desc: "巴士前往 Tekapo ($303 NZD)" },
+                    { type: "activity", desc: "約翰山天文台觀星導覽 (中文)" },
+                    { type: "activity", desc: "景點: 牧羊人教堂 / 魯冰花拍照" }
+                ],
+                tips: "<b>重要預約:</b> 觀星團建議提前 15 分鐘報到。<b>必買:</b> 麥蘆卡蜂蜜。"
+            }
+        ];
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            document.querySelectorAll('nav button').forEach(btn => btn.classList.replace('text-blue-600', 'text-gray-400'));
+            event.currentTarget.classList.replace('text-gray-400', 'text-blue-600');
+        }
+
+        function renderItinerary() {
+            const container = document.getElementById('itinerary');
+            travelData.forEach(d => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-3xl p-5 card-shadow relative overflow-hidden";
+                let itemsHtml = d.items.map(i => `
+                    <div class="flex items-start mb-3 text-sm">
+                        <span class="${i.type === 'trans' ? 'tag-transport' : 'tag-must-eat'} mr-2">${i.time || 'INFO'}</span>
+                        <span class="flex-1">${i.desc}</span>
+                    </div>
+                `).join('');
+                
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="text-blue-600 font-bold text-xs uppercase tracking-wider">${d.date}</span>
+                            <h2 class="text-xl font-bold text-gray-800">${d.day} : ${d.loc}</h2>
+                        </div>
+                        <div class="text-right text-orange-500 font-bold text-sm">${d.weather}</div>
+                    </div>
+                    ${itemsHtml}
+                    <div class="mt-4 pt-4 border-t border-dashed border-gray-200 text-xs text-gray-600">
+                        <i class="fa-solid fa-lightbulb text-yellow-400 mr-1"></i> ${d.tips}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        renderItinerary();
+    </script>
+</body>
+</html>
