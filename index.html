@@ -55,21 +55,29 @@
             padding: 1rem;
             border-radius: 1rem;
             text-align: center;
-            font-family: monospace, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin-bottom: 1.5rem;
             box-shadow: 0 4px 10px rgba(0, 36, 125, 0.3);
+        }
+        #countdown-days-group {
+            /* 使用 flex 或 inline-flex 讓天數和「天！」在同一行 */
+            display: flex;
+            justify-content: center;
+            align-items: baseline; /* 讓文字基線對齊 */
+            line-height: 1; /* 調整行高讓數字更貼近 */
         }
         #countdown-days {
             font-size: 2.5rem;
             font-weight: 800;
-            display: block;
+            margin-right: 0.25rem; /* 給天數和「天！」之間一點間隔 */
+            
         }
     </style>
 </head>
 <body>
 
     <header class="bg-white p-4 pt-6 sticky top-0 z-40 border-b border-gray-100 shadow-sm">
-        <h1 class="text-2xl font-bold text-gray-800" style="color: var(--nz-blue-dark);">🇳🇿 紐西蘭南島之旅 2026</h1>
+        <h1 class="text-2xl font-bold text-gray-800" style="color: var(--nz-blue-dark);">🇳🇿 2026紐西蘭南島之旅 </h1>
         <p class="text-sm text-gray-500">旅行時間：1月21日 - 1月31日</p>
     </header>
 
@@ -78,9 +86,11 @@
         <div id="itinerary" class="tab-content active space-y-6">
             
             <div id="countdown-banner">
-                <span class="text-sm font-semibold opacity-90">距離紐西蘭出發還有</span>
-                <span id="countdown-days">計算中...</span>
-                <span class="text-lg font-bold">天！</span>
+                <span class="text-sm font-semibold opacity-90 block mb-1">距離紐西蘭出發還有</span>
+                <div id="countdown-days-group">
+                    <span id="countdown-days">計算中...</span>
+                    <span class="text-lg font-bold">天</span>
+                </div>
             </div>
             
             <div class="announcement-card p-4 rounded-xl shadow-md">
@@ -228,16 +238,22 @@
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = targetDate - now;
+            
+            // 計算以天為單位
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             
             const countdownElement = document.getElementById('countdown-days');
-            const bannerElement = document.getElementById('countdown-banner');
 
             if (distance < 0) {
                 // 如果已經出發
                 countdownElement.textContent = '旅途中！';
-                bannerElement.querySelector('span:first-child').textContent = '恭喜您已開始您的';
-                bannerElement.querySelector('span:last-child').textContent = '旅程！';
+                const bannerText = document.getElementById('countdown-banner');
+                bannerText.innerHTML = `
+                    <span class="text-sm font-semibold opacity-90 block mb-1">恭喜您已開始您的</span>
+                    <div id="countdown-days-group">
+                        <span id="countdown-days" class="text-2xl font-bold">紐西蘭之旅！</span>
+                    </div>
+                `;
             } else {
                 // 尚未出發，正常倒數
                 countdownElement.textContent = days;
@@ -383,9 +399,8 @@
         renderItinerary();
         updateCountdown();
         
-        // 讓倒數計時器每隔 24 小時（或更短，例如每分鐘）更新一次
-        // 這裡設定每小時檢查一次，確保每天切換準確
-        setInterval(updateCountdown, 1000 * 60 * 60); 
+        // 讓倒數計時器每隔 1 小時（3600000 毫秒）更新一次，確保每天切換準確
+        setInterval(updateCountdown, 3600000); 
     </script>
 </body>
 </html>
