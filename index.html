@@ -45,9 +45,25 @@
         /* 導遊攻略區 */
         .guide-tip { background-color: #f6f8ff; border-left: 4px solid var(--nz-blue-light); padding: 12px; border-radius: 0 0.5rem 0.5rem 0; margin-top: 16px; }
 
-        /* 新增購物清單樣式 */
-        .shop-item { border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; margin-bottom: 12px; }
-        .shop-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        /* 公告區塊樣式 */
+        .announcement-card { background-color: #fff8e1; border: 2px solid #f9a825; cursor: pointer; }
+        
+        /* 倒數計時器樣式 */
+        #countdown-banner {
+            background-color: var(--nz-blue-dark);
+            color: white;
+            padding: 1rem;
+            border-radius: 1rem;
+            text-align: center;
+            font-family: monospace, sans-serif;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 36, 125, 0.3);
+        }
+        #countdown-days {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -60,6 +76,48 @@
     <main class="p-4" id="main-container">
         
         <div id="itinerary" class="tab-content active space-y-6">
+            
+            <div id="countdown-banner">
+                <span class="text-sm font-semibold opacity-90">距離紐西蘭出發還有</span>
+                <span id="countdown-days">計算中...</span>
+                <span class="text-lg font-bold">天！</span>
+            </div>
+            
+            <div class="announcement-card p-4 rounded-xl shadow-md">
+                <button onclick="toggleAnnouncement()" class="w-full flex justify-between items-center text-left focus:outline-none">
+                    <div>
+                        <h3 class="font-extrabold text-lg text-yellow-800 flex items-center">
+                            <i class="fa-solid fa-bell mr-2"></i>【2026紐西蘭家庭旅遊行前通知】
+                        </h3>
+                        <p class="text-xs text-yellow-700 mt-1">公告日期：2025/12/15 (點擊展開詳情)</p>
+                    </div>
+                    <i id="toggle-icon" class="fa-solid fa-chevron-down text-yellow-800 transition-transform duration-300"></i>
+                </button>
+
+                <div id="announcement-content" class="hidden mt-4 pt-4 border-t border-yellow-400 border-dashed space-y-4 text-sm text-gray-700">
+                    <h4 class="font-extrabold text-base text-red-600 mb-2 border-b border-red-200 pb-1">🟢 必備文件與檢查清單</h4>
+                    <ul class="list-disc ml-5 space-y-1">
+                        <li>**護照**: 效期須在 2026/07/31 後。</li>
+                        <li>**NZeTA**: 確認已核准。</li>
+                        <li>**活動預約單**: 冰河健行、觀星導覽等重要預約代號。</li>
+                        <li>**信用卡/提款卡**: 通知銀行將在紐西蘭使用。</li>
+                    </ul>
+
+                    <h4 class="font-extrabold text-base text-red-600 mt-3 mb-2 border-b border-red-200 pb-1">⚠️ 入境與海關申報提醒</h4>
+                    <ul class="list-disc ml-5 space-y-1">
+                        <li>**申報**：必報所有食物、戶外/登山用品。確保登山鞋底**徹底清潔**。</li>
+                        <li>**電子申報**：建議提前完成 NZ Traveller Declaration (NZTD)。</li>
+                    </ul>
+
+                    <h4 class="font-extrabold text-base text-red-600 mt-3 mb-2 border-b border-red-200 pb-1">🎒 行李準備與文化須知</h4>
+                    <ul class="list-disc ml-5 space-y-1">
+                        <li>**穿著**：務必採洋蔥式穿法，備妥防風防水外套。</li>
+                        <li>**防曬**：紐西蘭紫外線強，需備太陽眼鏡、防曬乳。</li>
+                        <li>**小費**：紐西蘭**無**給小費的習慣。</li>
+                        <li>**尊重**：進入私人住宅或毛利文化區，請習慣**脫鞋**。</li>
+                    </ul>
+                </div>
+            </div>
             </div>
 
         <div id="info" class="tab-content space-y-4">
@@ -88,23 +146,18 @@
                 <div class="space-y-4">
                     <div class="shop-item">
                         <p class="font-extrabold text-lg text-red-600">麥蘆卡蜂蜜 (Manuka Honey)</p>
-                        <p class="text-sm">**必買等級：A++**。具備獨特抗菌活性（UMF或MGO指標），送禮自用皆宜。購買時請認明 UMF 或 MGO 標籤。</p>
+                        <p class="text-sm">**必買等級：A++**。具備獨特抗菌活性（UMF或MGO指標）。</p>
                         <p class="text-xs text-gray-500 mt-1">🛒 購買地點：藥妝店、大型超市。</p>
                     </div>
                     <div class="shop-item">
                         <p class="font-extrabold text-lg text-orange-600">Whittaker's 巧克力</p>
-                        <p class="text-sm">紐西蘭國民巧克力，推薦 **花生醬 (Peanut Butter)** 或 **椰子 (Coconut)** 口味。</p>
-                        <p class="text-xs text-gray-500 mt-1">🛒 購買地點：各大超市（最便宜）、便利店。</p>
+                        <p class="text-sm">紐西蘭國民巧克力，推薦 **花生醬 (Peanut Butter)** 口味。</p>
+                        <p class="text-xs text-gray-500 mt-1">🛒 購買地點：各大超市（最便宜）。</p>
                     </div>
                     <div class="shop-item">
                         <p class="font-extrabold text-lg text-green-600">Merino 羊毛製品</p>
-                        <p class="text-sm">美麗諾羊毛材質輕盈保暖，圍巾、襪子或內衣都是很好的選擇，特別適合在 **Wanaka** 或 **Queenstown** 的精品店購買。</p>
+                        <p class="text-sm">材質輕盈保暖，圍巾、襪子，適合在 **Wanaka** 或 **Queenstown** 精品店購買。</p>
                         <p class="text-xs text-gray-500 mt-1">🛒 購買地點：Wanaka/CHC 專賣店、機場免稅店。</p>
-                    </div>
-                    <div class="shop-item">
-                        <p class="font-extrabold text-lg text-blue-600">L&P 汽水與 kiwifruit 奇異果</p>
-                        <p class="text-sm">L&P 是紐西蘭特有的檸檬與派 (Lemon & Paeroa) 汽水；奇異果則是當地特產，新鮮又美味！</p>
-                        <p class="text-xs text-gray-500 mt-1">🛒 購買地點：任何超市。</p>
                     </div>
                 </div>
             </div>
@@ -115,17 +168,16 @@
             <div class="card p-5 space-y-4">
                 <div class="space-y-2">
                     <h3 class="font-extrabold text-xl" style="color: var(--nz-blue-dark);">紐西蘭簡史：毛利與殖民</h3>
-                    <p class="text-sm">紐西蘭（Aotearoa）最早的居民是**毛利人**，他們約在 13 世紀從玻里尼西亞乘著獨木舟抵達。1840 年簽訂的**懷唐伊條約 (Treaty of Waitangi)** 是現代紐西蘭的基礎，確立了英國主權，同時保障了毛利人的土地和權利，但至今仍是討論的焦點。</p>
+                    <p class="text-sm">紐西蘭（Aotearoa）最早的居民是**毛利人**，約在 13 世紀抵達。1840 年簽訂的**懷唐伊條約 (Treaty of Waitangi)** 是現代紐西蘭的基礎。</p>
                 </div>
                 
                 <div class="space-y-2 pt-4 border-t border-dashed">
                     <h3 class="font-extrabold text-xl text-green-700">旅途中的在地習慣 (入境隨俗)</h3>
                     <ul class="list-disc ml-5 text-sm space-y-2">
-                        <li>**問候與尊重 (毛利文化)**：在正式場合，毛利人可能使用傳統的**鼻吻禮 (Hongi)**，但一般場合握手即可。對毛利文化場所和藝術品應保持尊重，未經允許不要觸碰。</li>
-                        <li>**環保意識 (純淨之國)**：紐西蘭人極度重視環境。請務必遵守 **「留下腳印，帶走回憶」** 的原則。垃圾必須分類或帶走，不要在野外餵食或觸摸動物。</li>
-                        <li>**小費習慣**：紐西蘭**沒有**給小費的習慣！除非您受到非常優質的服務（如高級餐廳或特殊導覽），否則不必給小費。</li>
-                        <li>**鞋子文化**：在進入很多私人住宅或毛利人的集會場所 (Marae) 時，習慣**脫鞋**。</li>
-                        <li>**交通禮儀**：在公車上或公共場合，人們通常安靜且互相禮讓。在鄉間道路駕駛時，請留意並讓行超車的車輛。</li>
+                        <li>**問候與尊重**：在正式場合，毛利人可能使用傳統的**鼻吻禮 (Hongi)**。對毛利文化場所應保持尊重。</li>
+                        <li>**環保意識**：紐西蘭人極度重視環境。請務必遵守 **「留下腳印，帶走回憶」** 的原則。</li>
+                        <li>**小費習慣**：紐西蘭**沒有**給小費的習慣。</li>
+                        <li>**鞋子文化**：進入很多私人住宅或場所時，習慣**脫鞋**。</li>
                     </ul>
                 </div>
             </div>
@@ -136,7 +188,7 @@
             <div class="bg-red-50 p-6 rounded-2xl border-2 border-red-300 shadow-md">
                 <h3 class="text-red-700 font-extrabold text-2xl mb-4 text-center">🚨 紐西蘭緊急電話</h3>
                 <a href="tel:111" class="block w-full bg-red-600 hover:bg-red-700 text-white text-center py-4 rounded-xl font-bold text-2xl mb-4 transition duration-200">
-                    撥打 111 (警察 / 救護車 / 消防)
+                    撥打 111
                 </a>
                 <div class="space-y-4 text-sm font-mono">
                     <p class="flex justify-between items-center text-gray-800"><span>駐紐西蘭代表處 (急難救助)</span> <span class="text-lg font-bold text-red-600">+64-27-440-0678</span></p>
@@ -170,6 +222,28 @@
     </nav>
 
     <script>
+        // 設定目標日期：2026年1月21日
+        const targetDate = new Date("2026-01-21T14:10:00").getTime(); 
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            
+            const countdownElement = document.getElementById('countdown-days');
+            const bannerElement = document.getElementById('countdown-banner');
+
+            if (distance < 0) {
+                // 如果已經出發
+                countdownElement.textContent = '旅途中！';
+                bannerElement.querySelector('span:first-child').textContent = '恭喜您已開始您的';
+                bannerElement.querySelector('span:last-child').textContent = '旅程！';
+            } else {
+                // 尚未出發，正常倒數
+                countdownElement.textContent = days;
+            }
+        }
+
         // *** 核心數據區塊：您只需要修改此處內容即可！ ***
         const travelData = [
             {
@@ -238,7 +312,13 @@
         // 渲染行程卡片的函數
         function renderItinerary() {
             const container = document.getElementById('itinerary');
-            container.innerHTML = ''; 
+            // 清空舊內容，但保留倒數計時器和公告卡片
+            const countdown = document.getElementById('countdown-banner');
+            const announcement = document.querySelector('.announcement-card');
+            container.innerHTML = '';
+            container.appendChild(countdown);
+            container.appendChild(announcement); 
+            
             travelData.forEach(d => {
                 const card = document.createElement('div');
                 card.className = "card p-4";
@@ -285,8 +365,27 @@
             }
         }
 
+        // 互動式公告卡片切換函數
+        function toggleAnnouncement() {
+            const content = document.getElementById('announcement-content');
+            const icon = document.getElementById('toggle-icon');
+
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180'); // 箭頭向上
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180'); // 箭頭向下
+            }
+        }
+
         // 初始化
         renderItinerary();
+        updateCountdown();
+        
+        // 讓倒數計時器每隔 24 小時（或更短，例如每分鐘）更新一次
+        // 這裡設定每小時檢查一次，確保每天切換準確
+        setInterval(updateCountdown, 1000 * 60 * 60); 
     </script>
 </body>
 </html>
