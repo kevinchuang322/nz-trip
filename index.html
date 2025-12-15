@@ -7,21 +7,56 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --nz-blue: #005596; --nz-green: #2d5a27; --nz-orange: #f59e0b; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f3f4f6; padding-bottom: 80px; }
+        /* 自定義顏色與字體 */
+        :root { 
+            --nz-blue: #005596; 
+            --nz-green: #48a045; 
+            --nz-orange: #f59e0b; 
+            --bg-light: #f3f4f6;
+        }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            background-color: var(--bg-light); 
+            padding-bottom: 80px; 
+            -webkit-font-smoothing: antialiased;
+        }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); position: fixed; bottom: 0; width: 100%; border-top: 1px solid #e5e7eb; z-index: 50; }
-        .card-shadow { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
-        .tag-must-eat { background-color: #fee2e2; color: #dc2626; padding: 2px 8px; border-radius: 99px; font-size: 12px; font-weight: bold; }
-        .tag-transport { background-color: #dbeafe; color: #2563eb; padding: 2px 8px; border-radius: 99px; font-size: 12px; font-weight: bold; }
+        /* 底部導航欄的毛玻璃效果 */
+        .glass-nav { 
+            background: rgba(255, 255, 255, 0.9); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px); /* For Safari */
+            position: fixed; 
+            bottom: 0; 
+            width: 100%; 
+            border-top: 1px solid #e5e7eb; 
+            z-index: 50; 
+        }
+        /* 卡片設計 */
+        .card { transition: transform 0.2s ease-in-out; }
+        .card:active { transform: scale(0.98); } /* 點擊時的App動態回饋 */
+        .card-image { 
+            height: 150px; 
+            background-size: cover; 
+            background-position: center; 
+            border-radius: 1rem 1rem 0 0;
+        }
+        /* 標籤設計 */
+        .tag { padding: 4px 10px; border-radius: 99px; font-size: 12px; font-weight: bold; margin-right: 8px; white-space: nowrap; }
+        .tag-transport { background-color: #dbeafe; color: #1e40af; } /* 交通 */
+        .tag-food { background-color: #fee2e2; color: #b91c1c; } /* 美食/必點 */
+        .tag-activity { background-color: #d1fae5; color: #065f46; } /* 景點/活動 */
+        .tag-info { background-color: #fef3c7; color: #92400e; } /* 住宿/預約 */
+        /* 導遊攻略區 */
+        .guide-tip { background-color: #fefce8; border-left: 4px solid #fcd34d; padding: 12px; border-radius: 0 0.5rem 0.5rem 0; margin-top: 16px; }
     </style>
 </head>
 <body>
 
-    <header class="bg-[#005596] text-white p-6 rounded-b-3xl card-shadow">
-        <h1 class="text-2xl font-bold">New Zealand Summer</h1>
-        <p class="opacity-80 text-sm">2026.01.21 - 01.31 南島純淨之旅</p>
+    <header class="bg-white p-4 pt-6 sticky top-0 z-40 border-b border-gray-100 shadow-sm">
+        <h1 class="text-2xl font-bold text-gray-800">🇳🇿 南島純淨之夏 2026</h1>
+        <p class="text-sm text-gray-500">旅行時間：1月21日 - 1月31日</p>
     </header>
 
     <main class="p-4" id="main-container">
@@ -30,140 +65,194 @@
             </div>
 
         <div id="info" class="tab-content space-y-4">
-            <div class="bg-white p-4 rounded-2xl card-shadow">
-                <h3 class="font-bold text-lg mb-2 text-blue-800"><i class="fa-solid fa-plane mr-2"></i>航班資訊</h3>
-                <div class="text-sm space-y-2 border-l-2 border-blue-200 pl-3">
-                    <p><strong>1/21 去程:</strong> SQ877 14:10 TPE → SIN (轉機 55m) → SQ297 10:40+1 CHC</p>
-                    <p><strong>1/22 國內:</strong> NZ5832 16:25 CHC → 17:10 HKK</p>
-                    <p><strong>1/31 回程:</strong> SQ296 01:05 CHC → 12:55 TPE</p>
+            <h2 class="text-lg font-bold text-gray-700 mt-2">✈️ 住宿與航班資訊總覽</h2>
+            
+            <div class="bg-white p-5 rounded-2xl shadow-md card">
+                <h3 class="font-extrabold text-xl mb-3 text-blue-700"><i class="fa-solid fa-plane-departure mr-2"></i>航班資訊</h3>
+                <div class="text-sm space-y-3 border-l-4 border-blue-200 pl-4">
+                    <p><strong>1/21 去程:</strong> TPE 14:10 → SIN → CHC 10:40+1</p>
+                    <p><strong>轉機提醒:</strong> 新加坡轉機僅 55 分鐘，行李直掛，請快速移動。</p>
+                    <p><strong>1/22 國內:</strong> CHC 16:25 → HKK 17:10 (NZ5832)</p>
+                    <p><strong>1/31 回程:</strong> CHC 01:05 → SIN → TPE 12:55</p>
                 </div>
             </div>
-            <div class="bg-white p-4 rounded-2xl card-shadow">
-                <h3 class="font-bold text-lg mb-2 text-green-800"><i class="fa-solid fa-hotel mr-2"></i>住宿資訊</h3>
-                <div class="text-sm space-y-3">
-                    <div class="border-b pb-2">
-                        <p class="font-bold">Fox Glacier: Rainforest Motel</p>
-                        <p class="text-gray-500">15 Cook Flat Road, Fox Glacier 7859</p>
+
+            <div class="bg-white p-5 rounded-2xl shadow-md card">
+                <h3 class="font-extrabold text-xl mb-3 text-green-700"><i class="fa-solid fa-house-chimney mr-2"></i>住宿清單</h3>
+                <div class="text-sm space-y-3 border-l-4 border-green-200 pl-4">
+                    <div>
+                        <p class="font-bold text-base">Hokitika / HKK 市區飯店</p>
                     </div>
-                    <div class="border-b pb-2">
-                        <p class="font-bold">Tekapo: Galaxy Boutique Hotel</p>
-                        <p class="text-gray-500">銀河精品飯店 - 靠近約翰山天文台</p>
+                    <div>
+                        <p class="font-bold text-base">Fox Glacier: Rainforest Motel</p>
+                        <p class="text-gray-500">15 Cook Flat Road (近冰河報到處)</p>
+                    </div>
+                    <div>
+                        <p class="font-bold text-base">Tekapo: Galaxy / Peppers Blue Water</p>
+                        <p class="text-gray-500">絕佳觀星位置</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div id="emergency" class="tab-content space-y-4">
-            <div class="bg-red-50 p-6 rounded-2xl border-2 border-red-200">
-                <h3 class="text-red-700 font-bold text-xl mb-4 text-center">🆘 緊急救援</h3>
-                <a href="tel:111" class="block w-full bg-red-600 text-white text-center py-4 rounded-xl font-bold text-2xl mb-4">撥打 111 (報警/急救)</a>
-                <div class="space-y-4 text-sm">
-                    <p class="flex justify-between"><span>駐紐西蘭代表處</span> <span class="font-mono font-bold">+64-27-440-0678</span></p>
-                    <p class="flex justify-between"><span>InterCity 巴士客服</span> <span class="font-mono font-bold">+64-9-583-5780</span></p>
+            <h2 class="text-lg font-bold text-gray-700 mt-2">📞 緊急聯絡與重要代號</h2>
+            
+            <div class="bg-red-50 p-6 rounded-2xl border-2 border-red-300 shadow-md">
+                <h3 class="text-red-700 font-extrabold text-2xl mb-4 text-center">🚨 紐西蘭緊急電話</h3>
+                <a href="tel:111" class="block w-full bg-red-600 hover:bg-red-700 text-white text-center py-4 rounded-xl font-bold text-2xl mb-4 transition duration-200">
+                    撥打 111 (警察 / 救護車 / 消防)
+                </a>
+                <div class="space-y-4 text-sm font-mono">
+                    <p class="flex justify-between items-center text-gray-800"><span>駐紐西蘭代表處 (急難救助)</span> <span class="text-lg font-bold text-red-600">+64-27-440-0678</span></p>
+                    <p class="flex justify-between items-center text-gray-800"><span>InterCity 巴士客服</span> <span class="text-lg font-bold text-blue-600">+64-9-583-5780</span></p>
                 </div>
             </div>
         </div>
     </main>
 
     <nav class="glass-nav flex justify-around py-3">
-        <button onclick="switchTab('itinerary')" class="flex flex-col items-center text-blue-600">
+        <button id="nav-itinerary" onclick="switchTab('itinerary', this)" class="flex flex-col items-center text-blue-600">
             <i class="fa-solid fa-calendar-day text-xl"></i>
             <span class="text-[10px] mt-1">每日行程</span>
         </button>
-        <button onclick="switchTab('info')" class="flex flex-col items-center text-gray-400">
+        <button id="nav-info" onclick="switchTab('info', this)" class="flex flex-col items-center text-gray-400">
             <i class="fa-solid fa-info-circle text-xl"></i>
             <span class="text-[10px] mt-1">住宿航班</span>
         </button>
-        <button onclick="switchTab('emergency')" class="flex flex-col items-center text-gray-400">
+        <button id="nav-emergency" onclick="switchTab('emergency', this)" class="flex flex-col items-center text-gray-400">
             <i class="fa-solid fa-phone-flip text-xl"></i>
             <span class="text-[10px] mt-1">緊急聯絡</span>
         </button>
     </nav>
 
     <script>
-        // 後台數據：您可以在這裡輕鬆更改內容
+        // *** 核心數據區塊：您只需要修改此處內容即可！ ***
         const travelData = [
             {
-                day: "Day 1-2", date: "01/21-22", loc: "抵達基督城 / 赫基蒂卡", weather: "22°C ☀️",
+                day: "Day 1 & 2", date: "01/21 (三) - 22 (四)", loc: "啟航/抵達 Hokitika", weather: "20°C 🌤️",
+                image: "https://images.unsplash.com/photo-1510257088463-c793f773663a?fit=crop&w=800&q=80",
                 items: [
-                    { type: "trans", time: "14:10", desc: "TPE 飛往 CHC (新加坡轉機)" },
-                    { type: "trans", time: "16:25", desc: "國內線 CHC → HKK 赫基蒂卡" },
-                    { type: "food", desc: "必吃: Fat Pipi Pizza 銀魚披薩" }
+                    { type: "trans", time: "14:10", desc: "TPE 飛往 SIN (轉機 55m) → CHC" },
+                    { type: "trans", time: "16:25", desc: "國內線 CHC → HKK (赫基蒂卡)" },
+                    { type: "food", desc: "必吃美食: Hokitika - Fat Pipi Pizza" },
+                    { type: "activity", desc: "景點: Hokitika 海灘地標、淘金博物館" }
                 ],
-                tips: "下飛機記得去取 <b>NZeTA</b> 簽證與申報單。"
+                tips: "轉機時間短，請注意登機門；抵達 CHC 務必申報所有食物與戶外用品。"
             },
             {
-                day: "Day 3", date: "01/23", loc: "前往 Fox Glacier", weather: "18°C ☁️",
+                day: "Day 3 & 4", date: "01/23 (五) - 24 (六)", loc: "Fox Glacier 冰河小鎮", weather: "17°C ☁️",
+                image: "https://images.unsplash.com/photo-1610416629986-7a70a80b06b0?fit=crop&w=800&q=80",
                 items: [
-                    { type: "trans", time: "15:00", desc: "InterCity 巴士前往 Fox Glacier ($198 NZD)" },
-                    { type: "info", desc: "住宿: Rainforest Motel (近櫃台 4min)" }
-                ],
-                tips: "<b>預約代號:</b> 請確認 InterCity 訂單郵件。"
-            },
-            {
-                day: "Day 4", date: "01/24", loc: "冰河健行", weather: "16°C 🏔️",
-                items: [
+                    { type: "trans", time: "15:00", desc: "InterCity 巴士 HKK → Fox Glacier ($198 NZD)" },
+                    { type: "info", desc: "住宿: Rainforest Motel (已預訂)" },
                     { type: "activity", desc: "核心行程: 冰河健走 + 直升機 (Heli-Hike)" },
-                    { type: "activity", desc: "景點: 馬西森湖 Lake Matheson 倒影" }
+                    { type: "activity", desc: "景點: 馬西森湖 Lake Matheson (拍山巒倒影)" }
                 ],
-                tips: "<b>必點:</b> 冰河咖啡館熱巧克力。健行需準備墨鏡防眩光。"
+                tips: "<b>重要預約代號</b>: 冰河健行預訂單號請隨身攜帶。山區氣溫低，記得洋蔥式穿衣。"
             },
             {
-                day: "Day 5-6", date: "01/25-26", loc: "瓦納卡 Wanaka", weather: "24°C ☀️",
+                day: "Day 5 & 6", date: "01/25 (日) - 26 (一)", loc: "Wanaka 湖畔樂活", weather: "25°C ☀️",
+                image: "https://images.unsplash.com/photo-1524381048895-09825b07223b?fit=crop&w=800&q=80",
                 items: [
-                    { type: "trans", time: "08:35", desc: "巴士前往 Wanaka ($378 NZD)" },
-                    { type: "activity", time: "17:30", desc: "Happy Hour Cruise 瓦納卡湖遊船" },
-                    { type: "activity", desc: "必拍: That Wanaka Tree 孤獨樹" }
+                    { type: "trans", time: "08:35", desc: "InterCity 巴士 Fox Glacier → Wanaka ($378 NZD)" },
+                    { type: "activity", desc: "景點: That Wanaka Tree (孤獨樹)" },
+                    { type: "food", desc: "必吃美食: Vudu Cafe 早餐 / Patagonia Chocolates" },
+                    { type: "activity", time: "17:30", desc: "體驗: Happy Hour Cruise 湖上遊船 (1hr)" }
                 ],
-                tips: "<b>必吃美食:</b> Patagonia Chocolates 冰淇淋。"
+                tips: "<b>必點菜單</b>: 遊船上的當地 Pinot Noir 紅酒。<b>必買伴手禮</b>: 當地 Merino 羊毛製品。"
             },
             {
-                day: "Day 7-8", date: "01/27-28", loc: "特卡波 Tekapo", weather: "20°C ✨",
+                day: "Day 7 & 8", date: "01/27 (二) - 28 (三)", loc: "Tekapo 星空小鎮", weather: "22°C ✨",
+                image: "https://images.unsplash.com/photo-1601614741369-1c93a0259b3a?fit=crop&w=800&q=80",
                 items: [
-                    { type: "trans", time: "08:30", desc: "巴士前往 Tekapo ($303 NZD)" },
-                    { type: "activity", desc: "約翰山天文台觀星導覽 (中文)" },
-                    { type: "activity", desc: "景點: 牧羊人教堂 / 魯冰花拍照" }
+                    { type: "trans", time: "08:30", desc: "InterCity 巴士 Wanaka → Tekapo ($303 NZD)" },
+                    { type: "activity", desc: "景點: 牧羊人教堂 / 湖畔魯冰花 (末期)" },
+                    { type: "food", desc: "必吃美食: Kohan Japanese (鮭魚丼飯)" },
+                    { type: "activity", desc: "核心行程: 約翰山天文台觀星導覽" }
                 ],
-                tips: "<b>重要預約:</b> 觀星團建議提前 15 分鐘報到。<b>必買:</b> 麥蘆卡蜂蜜。"
+                tips: "Tekapo 是國際暗空保護區，晚上觀星務必注意保暖，並攜帶紅光手電筒。"
+            },
+            {
+                day: "Day 9 & 10", date: "01/29 (四) - 30 (五)", loc: "Christchurch 花園城市", weather: "21°C ⛅",
+                image: "https://images.unsplash.com/photo-1549419142-6e1189d533b3?fit=crop&w=800&q=80",
+                items: [
+                    { type: "trans", time: "12:50", desc: "InterCity 巴士 Tekapo → Christchurch ($204 NZD)" },
+                    { type: "activity", desc: "景點: 基督城植物園、雅芳河撐篙船" },
+                    { type: "activity", desc: "逛街: Riverside Market / 紙教堂" },
+                    { type: "trans", desc: "晚上前往 CHC 機場準備搭機" }
+                ],
+                tips: "<b>必買伴手禮</b>: Whittaker's 巧克力、高濃度麥蘆卡蜂蜜。"
+            },
+            {
+                day: "Day 11", date: "01/31 (六)", loc: "賦歸", weather: "桃園 18°C ☁️",
+                image: "https://images.unsplash.com/photo-1621946864190-67c87c4b12c5?fit=crop&w=800&q=80",
+                items: [
+                    { type: "trans", time: "01:05", desc: "CHC → SIN (新加坡)" },
+                    { type: "trans", time: "08:30", desc: "SIN → TPE (桃園)" },
+                    { type: "info", desc: "愉快結束紐西蘭南島之旅！" }
+                ],
+                tips: "請務必提前 3 小時抵達機場辦理登機手續。"
             }
         ];
+        // *** 核心數據區塊結束 ***
 
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            document.querySelectorAll('nav button').forEach(btn => btn.classList.replace('text-blue-600', 'text-gray-400'));
-            event.currentTarget.classList.replace('text-gray-400', 'text-blue-600');
-        }
 
+        // 渲染行程卡片的函數
         function renderItinerary() {
             const container = document.getElementById('itinerary');
+            container.innerHTML = ''; // 清空舊內容
             travelData.forEach(d => {
                 const card = document.createElement('div');
-                card.className = "bg-white rounded-3xl p-5 card-shadow relative overflow-hidden";
+                card.className = "bg-white rounded-2xl shadow-lg card overflow-hidden";
+                
+                // 內層 HTML 結構
                 let itemsHtml = d.items.map(i => `
-                    <div class="flex items-start mb-3 text-sm">
-                        <span class="${i.type === 'trans' ? 'tag-transport' : 'tag-must-eat'} mr-2">${i.time || 'INFO'}</span>
-                        <span class="flex-1">${i.desc}</span>
+                    <div class="flex items-start mb-2">
+                        <span class="tag ${i.type === 'trans' ? 'tag-transport' : i.type === 'food' ? 'tag-food' : i.type === 'activity' ? 'tag-activity' : 'tag-info'}">${i.time || (i.type === 'food' ? '美食' : i.type === 'activity' ? '景點' : '資訊')}</span>
+                        <p class="flex-1 text-sm text-gray-700 font-medium">${i.desc}</p>
                     </div>
                 `).join('');
                 
                 card.innerHTML = `
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <span class="text-blue-600 font-bold text-xs uppercase tracking-wider">${d.date}</span>
-                            <h2 class="text-xl font-bold text-gray-800">${d.day} : ${d.loc}</h2>
+                    <div class="card-image" style="background-image: url('${d.image}');"></div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-3 border-b pb-2">
+                            <div>
+                                <h2 class="text-xl font-extrabold text-gray-800">${d.day} / ${d.loc}</h2>
+                                <span class="text-xs font-semibold text-blue-600">${d.date}</span>
+                            </div>
+                            <div class="text-right text-orange-500 font-bold text-sm bg-yellow-100 px-3 py-1 rounded-full shadow-inner">${d.weather}</div>
                         </div>
-                        <div class="text-right text-orange-500 font-bold text-sm">${d.weather}</div>
-                    </div>
-                    ${itemsHtml}
-                    <div class="mt-4 pt-4 border-t border-dashed border-gray-200 text-xs text-gray-600">
-                        <i class="fa-solid fa-lightbulb text-yellow-400 mr-1"></i> ${d.tips}
+                        
+                        <div class="space-y-3">
+                            ${itemsHtml}
+                        </div>
+
+                        <div class="guide-tip">
+                            <i class="fa-solid fa-lightbulb text-yellow-500 mr-2"></i>
+                            <span class="text-sm text-gray-700 font-semibold">導遊攻略：</span>
+                            <p class="text-xs text-gray-600 mt-1">${d.tips}</p>
+                        </div>
                     </div>
                 `;
                 container.appendChild(card);
             });
         }
 
+        // 切換分頁的函數
+        function switchTab(tabId, button) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            
+            // 處理底部導航欄按鈕顏色
+            document.querySelectorAll('nav button').forEach(btn => btn.classList.replace('text-blue-600', 'text-gray-400'));
+            if (button) {
+                button.classList.replace('text-gray-400', 'text-blue-600');
+            }
+        }
+
+        // 初始化
         renderItinerary();
     </script>
 </body>
