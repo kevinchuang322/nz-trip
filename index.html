@@ -41,9 +41,11 @@
         .tag-transport { background-color: #dbeafe; color: #1e40af; } /* 交通 */
         .tag-food { background-color: #fee2e2; color: #b91c1c; } /* 美食/必點 */
         .tag-activity { background-color: #d1fae5; color: #065f46; } /* 景點/活動 */
-        .tag-info { background-color: #fef3c7; color: #92400e; } /* 住宿/預約 */
+        .tag-info { background-color: #fef3c7; color: #92400e; } /* 住宿/預約/資訊 */
         /* 導遊攻略區 */
         .guide-tip { background-color: #f6f8ff; border-left: 4px solid var(--nz-blue-light); padding: 12px; border-radius: 0 0.5rem 0.5rem 0; margin-top: 16px; }
+        /* 餐飲區塊 */
+        .meal-box { background-color: #fff7ed; padding: 0.75rem 1rem; border-radius: 0.5rem; margin-top: 1rem; border: 1px dashed #fdba74; }
 
         /* 公告區塊樣式 */
         .announcement-card { background-color: #fff8e1; border: 2px solid #f9a825; cursor: pointer; }
@@ -73,11 +75,10 @@
 
         /* 時間軸樣式 */
         .timeline {
-            border-left: 4px solid #d1d5db; /* 灰色線條 */
+            border-left: 4px solid #d1d5db;
             padding-left: 20px;
             margin-left: 10px;
         }
-
         .timeline-item {
             position: relative;
             padding-bottom: 30px;
@@ -87,7 +88,7 @@
             content: '';
             position: absolute;
             top: 0;
-            left: -24px; /* 對齊線條 */
+            left: -24px;
             width: 12px;
             height: 12px;
             background-color: var(--nz-blue-light);
@@ -136,24 +137,24 @@
                 <div id="announcement-content" class="hidden mt-4 pt-4 border-t border-yellow-400 border-dashed space-y-4 text-sm text-gray-700">
                     <h4 class="font-extrabold text-base text-red-600 mb-2 border-b border-red-200 pb-1">🟢 必備文件與檢查清單</h4>
                     <ul class="list-disc ml-5 space-y-1">
-                        <li>**護照**: 效期須在 2026/07/31 後。</li>
-                        <li>**NZeTA**: 確認已核准。</li>
-                        <li>**活動預約單**: 冰河健行、觀星導覽等重要預約代號。</li>
-                        <li>**信用卡/提款卡**: 通知銀行將在紐西蘭使用。</li>
+                        <li>護照: 效期須在 2026/07/31 後。</li>
+                        <li>NZeTA: 確認已核准。</li>
+                        <li>活動預約單: 冰河健行、觀星導覽等重要預約代號。</li>
+                        <li>信用卡/提款卡: 通知銀行將在紐西蘭使用。</li>
                     </ul>
 
                     <h4 class="font-extrabold text-base text-red-600 mt-3 mb-2 border-b border-red-200 pb-1">⚠️ 入境與海關申報提醒</h4>
                     <ul class="list-disc ml-5 space-y-1">
-                        <li>**申報**：必報所有食物、戶外/登山用品。確保登山鞋底**徹底清潔**。</li>
-                        <li>**電子申報**：建議提前完成 NZ Traveller Declaration (NZTD)。</li>
+                        <li>申報：必報所有食物、戶外/登山用品。確保登山鞋底徹底清潔。</li>
+                        <li>電子申報：建議提前完成 NZ Traveller Declaration (NZTD)。</li>
                     </ul>
 
                     <h4 class="font-extrabold text-base text-red-600 mt-3 mb-2 border-b border-red-200 pb-1">🎒 行李準備與文化須知</h4>
                     <ul class="list-disc ml-5 space-y-1">
-                        <li>**穿著**：務必採洋蔥式穿法，備妥防風防水外套。</li>
-                        <li>**防曬**：紐西蘭紫外線強，需備太陽眼鏡、防曬乳。</li>
-                        <li>**小費**：紐西蘭**無**給小費的習慣。</li>
-                        <li>**尊重**：進入私人住宅或毛利文化區，請習慣**脫鞋**。</li>
+                        <li>穿著：務必採洋蔥式穿法，備妥防風防水外套。</li>
+                        <li>防曬：紐西蘭紫外線強，需備太陽眼鏡、防曬乳。</li>
+                        <li>小費：紐西蘭無給小費的習慣。</li>
+                        <li>尊重：進入私人住宅或毛利文化區，請習慣**脫鞋**。</li>
                     </ul>
                 </div>
             </div>
@@ -276,7 +277,7 @@
             <div class="bg-red-50 p-6 rounded-2xl border-2 border-red-300 shadow-md">
                 <h3 class="text-red-700 font-extrabold text-2xl mb-4 text-center">🚨 紐西蘭緊急電話</h3>
                 <a href="tel:111" class="block w-full bg-red-600 hover:bg-red-700 text-white text-center py-4 rounded-xl font-bold text-2xl mb-4 transition duration-200">
-                    撥打 111
+                    撥打 111 緊急電話（警察、消防、救護）
                 </a>
                 <div class="space-y-4 text-sm font-mono">
                     <p class="flex justify-between items-center text-gray-800"><span>駐紐西蘭代表處 (急難救助)</span> <span class="text-lg font-bold text-red-600">+64-27-440-0678</span></p>
@@ -289,7 +290,7 @@
     <nav class="glass-nav flex justify-around py-3">
         <button id="nav-itinerary" onclick="switchTab('itinerary', this)" class="flex flex-col items-center text-lg" style="color: var(--nz-blue-dark);">
             <i class="fa-solid fa-calendar-day text-xl"></i>
-            <span class="text-[10px] mt-1">行程</span>
+            <span class="text-[10px] mt-1">每日行程</span>
         </button>
         <button id="nav-info" onclick="switchTab('info', this)" class="flex flex-col items-center text-gray-400">
             <i class="fa-solid fa-info-circle text-xl"></i>
@@ -337,72 +338,161 @@
             }
         }
         
-        // 核心數據區塊：行程內容 (不變)
-        const travelData = [
-            {
-                day: "Day 1 & 2", date: "01/21 (三) - 22 (四)", loc: "啟航/抵達 Hokitika", weather: "20°C 🌤️",
-                items: [
-                    { type: "trans", time: "14:10", desc: "TPE 飛往 SIN (轉機 55m) → CHC" },
-                    { type: "trans", time: "16:25", desc: "國內線 CHC → HKK 赫基蒂卡 (NZ5832)" },
-                    { type: "food", desc: "必吃美食: Hokitika - Fat Pipi Pizza (銀魚披薩)" },
-                    { type: "activity", desc: "景點: Hokitika 海灘地標" }
+        // *** 核心數據區塊：單日行程清單（已重構） ***
+        const dailyItinerary = [
+            // Day 1: 01/21 (三)
+            { 
+                day: "Day 1", date: "01/21 (三)", loc: "啟航/轉機", weather: "20°C 🌤️",
+                activities: [
+                    { type: "trans", time: "14:10", desc: "TPE 飛往 SIN (轉機 55m) → CHC (基督城)" },
+                    { type: "info", time: "深夜", desc: "夜間飛行 / 機上休息" }
                 ],
-                tips: "轉機時間短，請務必快速移動。入境 CHC 務必對農產品進行誠實申報。"
+                lunch: "機上餐（自行準備輕食）",
+                dinner: "機上餐（享用晚餐）",
+                transportSummary: "國際航班 (SQ)",
+                tips: "請務必提前 3 小時抵達機場。轉機時間短，請務必快速移動。"
             },
-            {
-                day: "Day 3 & 4", date: "01/23 (五) - 24 (六)", loc: "Fox Glacier 冰河小鎮", weather: "17°C ☁️",
-                items: [
-                    { type: "trans", time: "15:00", desc: "InterCity 巴士 HKK → Fox Glacier ($198 NZD)" },
-                    { type: "info", desc: "住宿: Rainforest Motel (已預訂)" },
-                    { type: "activity", desc: "核心行程: 冰河健走 + 直升機 (Heli-Hike)" },
-                    { type: "activity", desc: "景點: 馬西森湖 Lake Matheson (拍山巒倒影)" }
+            // Day 2: 01/22 (四)
+            { 
+                day: "Day 2", date: "01/22 (四)", loc: "抵達 Hokitika", weather: "19°C 🌦️",
+                activities: [
+                    { type: "trans", time: "10:40", desc: "抵達 CHC 基督城 (辦理入境申報)" },
+                    { type: "trans", time: "16:25", desc: "國內線 CHC → HKK 赫基蒂卡 (NZ5832)" },
+                    { type: "info", time: "17:30", desc: "抵達 Hokitika / 辦理住宿" },
+                    { type: "activity", time: "日落", desc: "景點: Hokitika 海灘地標 (看日落)" }
                 ],
+                lunch: "CHC 機場簡易午餐（漢堡王或咖啡廳）",
+                dinner: "必吃美食: Hokitika - Fat Pipi Pizza (銀魚披薩)",
+                transportSummary: "國際/國內航班、機場接送",
+                tips: "入境 CHC 務必對農產品進行誠實申報。抵達 HKK 後請確認巴士隔日上車地點。"
+            },
+            // Day 3: 01/23 (五)
+            {
+                day: "Day 3", date: "01/23 (五)", loc: "前往 Fox Glacier", weather: "17°C ☁️",
+                activities: [
+                    { type: "food", time: "上午", desc: "Hokitika 小鎮咖啡廳早午餐" },
+                    { type: "activity", time: "上午", desc: "Hokitika 鎮上閒逛" },
+                    { type: "trans", time: "15:00", desc: "InterCity 巴士 HKK → Fox Glacier (約 2.5 小時)" },
+                    { type: "info", time: "17:40", desc: "抵達住宿: Rainforest Motel (辦理入住)" }
+                ],
+                lunch: "巴士上自備或小鎮簡單外帶",
+                dinner: "Fox Glacier 小鎮餐廳 (如 Cook Saddle Cafe)",
+                transportSummary: "InterCity 巴士 ($198 NZD)",
+                tips: "長途巴士較耗時，請備妥零食。住宿確認冰河健行公司的接駁資訊。"
+            },
+            // Day 4: 01/24 (六)
+            {
+                day: "Day 4", date: "01/24 (六)", loc: "Fox Glacier 冰河體驗", weather: "18°C 🌤️",
+                activities: [
+                    { type: "activity", time: "09:00", desc: "核心行程: 冰河健走 + 直升機 (Heli-Hike)" },
+                    { type: "activity", time: "下午", desc: "景點: 馬西森湖 Lake Matheson (拍山巒倒影)" },
+                    { type: "info", time: "晚上", desc: "購買隔日長途巴士所需乾糧及水" }
+                ],
+                lunch: "冰河健行結束後在鎮上用午餐",
+                dinner: "Fox Glacier 小鎮餐廳 / Motel 自炊",
+                transportSummary: "冰河健行公司接駁車/步行",
                 tips: "<b>重要預約代號</b>: 冰河健行預訂單號請隨身攜帶。山區氣溫低，記得洋蔥式穿衣。"
             },
+            // Day 5: 01/25 (日)
             {
-                day: "Day 5 & 6", date: "01/25 (日) - 26 (一)", loc: "Wanaka 湖畔樂活", weather: "25°C ☀️",
-                items: [
+                day: "Day 5", date: "01/25 (日)", loc: "前往 Wanaka", weather: "25°C ☀️",
+                activities: [
+                    { type: "food", time: "清晨", desc: "Motel 附近享用早餐" },
                     { type: "trans", time: "08:35", desc: "InterCity 巴士 Fox Glacier → Wanaka ($378 NZD)" },
-                    { type: "activity", desc: "景點: That Wanaka Tree (孤獨樹) / 市區逛街" },
-                    { type: "food", desc: "必吃美食: Vudu Cafe 早餐 / Patagonia Chocolates 冰淇淋" },
+                    { type: "info", time: "14:26", desc: "抵達 Wanaka / 辦理入住" },
+                    { type: "activity", time: "下午", desc: "景點: That Wanaka Tree (孤獨樹)" }
+                ],
+                lunch: "巴士上自備或沿途休息站 (長途約 6 小時)",
+                dinner: "Wanaka 湖畔晚餐 (義式或牛排)",
+                transportSummary: "InterCity 巴士",
+                tips: "這段路程景色極佳，請準備好相機。抵達後先去確認遊船碼頭位置。"
+            },
+            // Day 6: 01/26 (一)
+            {
+                day: "Day 6", date: "01/26 (一)", loc: "Wanaka 湖畔樂活", weather: "25°C ☀️",
+                activities: [
+                    { type: "food", time: "上午", desc: "必吃美食: Vudu Cafe 早餐" },
+                    { type: "activity", time: "上午", desc: "市區逛街 / 買伴手禮 (Merino 羊毛製品)" },
                     { type: "activity", time: "17:30", desc: "體驗: Happy Hour Cruise 湖上遊船 (1hr)" }
                 ],
-                tips: "<b>必點菜單</b>: 遊船上的當地 Pinot Noir 紅酒。<b>必買伴手禮</b>: 當地 Merino 羊毛製品。"
+                lunch: "Wanaka 市區簡餐 (推薦 Burger King Wanaka)",
+                dinner: "遊船結束後享用晚餐 / 必吃 Patagonia Chocolates 冰淇淋",
+                transportSummary: "步行",
+                tips: "<b>必點菜單</b>: 遊船上的當地 Pinot Noir 紅酒。"
             },
+            // Day 7: 01/27 (二)
             {
-                day: "Day 7 & 8", date: "01/27 (二) - 28 (三)", loc: "Tekapo 星空小鎮", weather: "22°C ✨",
-                items: [
+                day: "Day 7", date: "01/27 (二)", loc: "前往 Tekapo 星空小鎮", weather: "22°C ✨",
+                activities: [
+                    { type: "food", time: "上午", desc: "Wanaka 享用早餐" },
                     { type: "trans", time: "08:30", desc: "InterCity 巴士 Wanaka → Tekapo ($303 NZD)" },
-                    { type: "activity", desc: "景點: 牧羊人教堂 / 湖畔魯冰花 (末期)" },
-                    { type: "food", desc: "必吃美食: Kohan Japanese (鮭魚丼飯必點)" },
-                    { type: "activity", desc: "核心行程: 約翰山天文台觀星導覽" }
+                    { type: "info", time: "12:05", desc: "抵達 Tekapo / 辦理入住 Galaxy/Peppers Blue Water" },
+                    { type: "activity", time: "下午", desc: "景點: 牧羊人教堂 / 湖畔魯冰花 (末期)" }
                 ],
+                lunch: "抵達 Tekapo 後在住宿附近午餐",
+                dinner: "必吃美食: Kohan Japanese (鮭魚丼飯必點)",
+                transportSummary: "InterCity 巴士",
+                tips: "Tekapo 景點集中，步行可達。晚上觀星行程務必提早報到。"
+            },
+            // Day 8: 01/28 (三)
+            {
+                day: "Day 8", date: "01/28 (三)", loc: "Tekapo 觀星", weather: "22°C ✨",
+                activities: [
+                    { type: "food", time: "上午", desc: "Tekapo 住宿處或咖啡廳 (Astro Cafe)" },
+                    { type: "activity", time: "白天", desc: "Lake Tekapo 湖畔活動 / 休息" },
+                    { type: "activity", time: "晚上", desc: "核心行程: 約翰山天文台觀星導覽" }
+                ],
+                lunch: "Tekapo 簡單午餐 (如 Reflections Café)",
+                dinner: "準備觀星前在鎮上用晚餐",
+                transportSummary: "觀星團接駁車/步行",
                 tips: "Tekapo 是國際暗空保護區，晚上觀星務必注意保暖，並攜帶紅光手電筒。"
             },
+            // Day 9: 01/29 (四)
             {
-                day: "Day 9 & 10", date: "01/29 (四) - 30 (五)", loc: "Christchurch 花園城市", weather: "21°C ⛅",
-                items: [
+                day: "Day 9", date: "01/29 (四)", loc: "前往 Christchurch", weather: "21°C ⛅",
+                activities: [
+                    { type: "food", time: "上午", desc: "Tekapo 享用早餐 / Check Out" },
+                    { type: "activity", time: "中午", desc: "最後逛逛牧羊人教堂 / 湖畔" },
                     { type: "trans", time: "12:50", desc: "InterCity 巴士 Tekapo → Christchurch ($204 NZD)" },
-                    { type: "activity", desc: "景點: 基督城植物園、雅芳河撐篙船" },
-                    { type: "activity", desc: "逛街: Riverside Market / 紙教堂" },
-                    { type: "trans", desc: "晚上前往 CHC 機場準備搭機" }
+                    { type: "info", time: "16:15", desc: "抵達 Christchurch / 辦理入住" }
                 ],
-                tips: "<b>必買伴手禮</b>: Whittaker's 巧克力、高濃度麥蘆卡蜂蜜。"
+                lunch: "巴士上自備或中途休息站",
+                dinner: "抵達 CHC 後在住宿附近用晚餐 (可逛 Riccarton Market)",
+                transportSummary: "InterCity 巴士",
+                tips: "長途巴士記得提早 check-out。抵達 CHC 後城市大，可搭乘輕軌或 Uber。"
             },
+            // Day 10: 01/30 (五)
+            {
+                day: "Day 10", date: "01/30 (五)", loc: "Christchurch 花園城市", weather: "21°C ⛅",
+                activities: [
+                    { type: "food", time: "上午", desc: "基督城咖啡廳 (The Caffeine Laboratory)" },
+                    { type: "activity", time: "上午", desc: "景點: 基督城植物園、雅芳河撐篙船" },
+                    { type: "activity", time: "下午", desc: "景點: 紙教堂 / 市區逛街" },
+                    { type: "trans", time: "22:00", desc: "前往 CHC 機場辦理登機手續" }
+                ],
+                lunch: "逛街: Riverside Market 享用午餐",
+                dinner: "機場附近享用 / 準備前往機場",
+                transportSummary: "步行、市區交通、Uber/Taxi",
+                tips: "<b>必買伴手禮</b>: Whittaker's 巧克力、高濃度麥蘆卡蜂蜜。國際航班務必提前到達機場。"
+            },
+            // Day 11: 01/31 (六)
             {
                 day: "Day 11", date: "01/31 (六)", loc: "賦歸", weather: "桃園 18°C ☁️",
-                items: [
+                activities: [
                     { type: "trans", time: "01:05", desc: "CHC → SIN (新加坡)" },
                     { type: "trans", time: "08:30", desc: "SIN → TPE (桃園)" },
-                    { type: "info", desc: "愉快結束紐西蘭南島之旅！" }
+                    { type: "info", time: "12:55", desc: "抵達桃園，愉快結束紐西蘭南島之旅！" }
                 ],
+                lunch: "機上餐",
+                dinner: "機上餐",
+                transportSummary: "國際航班 (SQ)",
                 tips: "請務必提前 3 小時抵達機場辦理登機手續。"
             }
         ];
         // *** 核心數據區塊結束 ***
 
 
-        // 渲染行程卡片的函數
+        // 渲染行程卡片的函數 (已更新)
         function renderItinerary() {
             const container = document.getElementById('itinerary');
             const countdown = document.getElementById('countdown-banner');
@@ -411,28 +501,43 @@
             container.appendChild(countdown);
             container.appendChild(announcement); 
             
-            travelData.forEach(d => {
+            dailyItinerary.forEach(d => {
                 const card = document.createElement('div');
                 card.className = "card p-4";
                 
-                let itemsHtml = d.items.map(i => `
+                // 主要行程列表
+                let activitiesHtml = d.activities.map(i => `
                     <div class="flex items-start mb-2">
                         <span class="tag ${i.type === 'trans' ? 'tag-transport' : i.type === 'food' ? 'tag-food' : i.type === 'activity' ? 'tag-activity' : 'tag-info'}">${i.time || (i.type === 'food' ? '美食' : i.type === 'activity' ? '景點' : '資訊')}</span>
                         <p class="flex-1 text-sm text-gray-700 font-medium">${i.desc}</p>
                     </div>
                 `).join('');
-                
+
+                // 卡片主體結構
                 card.innerHTML = `
                     <div class="flex justify-between items-center mb-3 border-b pb-2">
                         <div>
-                            <h2 class="text-xl font-extrabold text-gray-800">${d.day} / ${d.loc}</h2>
+                            <h2 class="text-xl font-extrabold text-gray-800">${d.day}：${d.loc}</h2>
                             <span class="text-xs font-semibold" style="color: var(--nz-blue-dark);">${d.date}</span>
                         </div>
                         <div class="text-right text-orange-600 font-bold text-sm bg-yellow-100 px-3 py-1 rounded-full shadow-inner">${d.weather}</div>
                     </div>
                     
                     <div class="space-y-3">
-                        ${itemsHtml}
+                        ${activitiesHtml}
+                    </div>
+
+                    <div class="meal-box">
+                        <p class="text-sm font-bold text-orange-600 mb-1"><i class="fa-solid fa-burger mr-2"></i>午餐：</p>
+                        <p class="text-xs text-gray-700 ml-5">${d.lunch}</p>
+                        <p class="text-sm font-bold text-red-600 mt-2 mb-1"><i class="fa-solid fa-utensils mr-2"></i>晚餐：</p>
+                        <p class="text-xs text-gray-700 ml-5">${d.dinner}</p>
+                    </div>
+
+                    <div class="guide-tip !bg-blue-50 !border-blue-300 mt-4">
+                        <i class="fa-solid fa-bus-simple text-blue-500 mr-2"></i>
+                        <span class="text-sm text-gray-700 font-semibold">交通工具：</span>
+                        <p class="text-xs text-gray-600 mt-1">${d.transportSummary}</p>
                     </div>
 
                     <div class="guide-tip">
