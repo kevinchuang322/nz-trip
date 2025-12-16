@@ -60,24 +60,53 @@
             box-shadow: 0 4px 10px rgba(0, 36, 125, 0.3);
         }
         #countdown-days-group {
-            /* 使用 flex 或 inline-flex 讓天數和「天！」在同一行 */
             display: flex;
             justify-content: center;
-            align-items: baseline; /* 讓文字基線對齊 */
-            line-height: 1; /* 調整行高讓數字更貼近 */
+            align-items: baseline;
+            line-height: 1;
         }
         #countdown-days {
             font-size: 2.5rem;
             font-weight: 800;
-            margin-right: 0.25rem; /* 給天數和「天！」之間一點間隔 */
-            
+            margin-right: 0.25rem; 
+        }
+
+        /* 時間軸樣式 */
+        .timeline {
+            border-left: 4px solid #d1d5db; /* 灰色線條 */
+            padding-left: 20px;
+            margin-left: 10px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 30px;
+            margin-bottom: 15px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -24px; /* 對齊線條 */
+            width: 12px;
+            height: 12px;
+            background-color: var(--nz-blue-light);
+            border-radius: 50%;
+            border: 3px solid white;
+            z-index: 10;
+        }
+        .timeline-header {
+            font-weight: bold;
+            font-size: 1.125rem;
+            color: var(--nz-blue-dark);
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
 <body>
 
     <header class="bg-white p-4 pt-6 sticky top-0 z-40 border-b border-gray-100 shadow-sm">
-        <h1 class="text-2xl font-bold text-gray-800" style="color: var(--nz-blue-dark);">🇳🇿 2026紐西蘭南島之旅 </h1>
+        <h1 class="text-2xl font-bold text-gray-800" style="color: var(--nz-blue-dark);">🇳🇿 紐西蘭南島之旅 2026</h1>
         <p class="text-sm text-gray-500">旅行時間：1月21日 - 1月31日</p>
     </header>
 
@@ -89,7 +118,7 @@
                 <span class="text-sm font-semibold opacity-90 block mb-1">距離紐西蘭出發還有</span>
                 <div id="countdown-days-group">
                     <span id="countdown-days">計算中...</span>
-                    <span class="text-lg font-bold">天</span>
+                    <span class="text-lg font-bold">天！</span>
                 </div>
             </div>
             
@@ -176,13 +205,63 @@
         <div id="history" class="tab-content space-y-4">
             <h2 class="text-lg font-bold text-gray-700 mt-2">📜 歷史概覽與文化須知</h2>
             <div class="card p-5 space-y-4">
-                <div class="space-y-2">
-                    <h3 class="font-extrabold text-xl" style="color: var(--nz-blue-dark);">紐西蘭簡史：毛利與殖民</h3>
-                    <p class="text-sm">紐西蘭（Aotearoa）最早的居民是**毛利人**，約在 13 世紀抵達。1840 年簽訂的**懷唐伊條約 (Treaty of Waitangi)** 是現代紐西蘭的基礎。</p>
+                <h3 class="font-extrabold text-xl" style="color: var(--nz-blue-dark);">🗺️ 紐西蘭歷史簡述（時間軸）</h3>
+
+                <div class="timeline">
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-header">約公元1320年以前：毛利人的到來</div>
+                        <p class="text-sm font-semibold text-gray-600">最早的居民</p>
+                        <p class="text-sm">來自玻里尼西亞的移民抵達，發展出獨特的毛利文化。</p>
+                        <ul class="list-disc ml-5 text-xs mt-1 text-gray-500">
+                            <li>早期生活以部落（iwi）為基礎，重視 Whakapapa（家譜/族譜）。</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-header">1642年：首次歐洲人接觸</div>
+                        <p class="text-sm font-semibold text-gray-600">荷蘭航海家：亞伯·塔斯曼（Abel Tasman）抵達。</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-header">1840年：《懷唐伊條約》簽訂</div>
+                        <p class="text-sm font-semibold text-red-600">紐西蘭建國文件！</p>
+                        <p class="text-sm">確立英國法律制度，但對「主權」理解差異，是關鍵議題。</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-header">1893年：婦女投票權</div>
+                        <p class="text-sm font-semibold text-green-600">世界上第一個給予婦女投票權的國家。</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-header">1947年：完全獨立</div>
+                        <p class="text-sm">成為完全獨立的主權國家。</p>
+                    </div>
+
+                </div>
+                
+                <div class="space-y-2 pt-4 border-t border-dashed mt-6">
+                    <h3 class="font-extrabold text-xl text-green-700">✨ 核心文化特色</h3>
+                    <p class="text-sm">紐西蘭文化是毛利傳統與歐洲習俗相互融合的結果。</p>
+
+                    <h4 class="font-extrabold text-base text-blue-700 mt-3">🇳🇿 毛利文化（Te Ao Māori）</h4>
+                    <ul class="list-disc ml-5 text-sm space-y-1">
+                        <li>**國家精神**：毛利文化是紐西蘭國家精神的核心。</li>
+                        <li>**國語地位**：毛利語（Te Reo Māori）與英語和紐西蘭手語並列為官方語言。</li>
+                    </ul>
+
+                    <h4 class="font-extrabold text-base text-purple-700 mt-3">🇬🇧 歐裔文化與日常生活</h4>
+                    <ul class="list-disc ml-5 text-sm space-y-1">
+                        <li>**稱謂**：英語是主要語言，人們通常被稱為 **Kiwis** (奇異鳥)。</li>
+                        <li>**國球**：橄欖球（Rugby）盛行，被視為國球。</li>
+                        <li>**生活方式**：戶外生活是文化的重要組成部分，熱愛徒步、露營、水上運動和接觸自然。</li>
+                        <li>**政治體制**：屬於君主立憲制，是英國大英國協的成員國。</li>
+                    </ul>
                 </div>
                 
                 <div class="space-y-2 pt-4 border-t border-dashed">
-                    <h3 class="font-extrabold text-xl text-green-700">旅途中的在地習慣 (入境隨俗)</h3>
+                    <h3 class="font-extrabold text-xl text-yellow-700">旅途中的在地習慣 (入境隨俗)</h3>
                     <ul class="list-disc ml-5 text-sm space-y-2">
                         <li>**問候與尊重**：在正式場合，毛利人可能使用傳統的**鼻吻禮 (Hongi)**。對毛利文化場所應保持尊重。</li>
                         <li>**環保意識**：紐西蘭人極度重視環境。請務必遵守 **「留下腳印，帶走回憶」** 的原則。</li>
@@ -192,7 +271,6 @@
                 </div>
             </div>
         </div>
-
         <div id="emergency" class="tab-content space-y-4">
             <h2 class="text-lg font-bold text-gray-700 mt-2">📞 緊急聯絡與重要代號</h2>
             <div class="bg-red-50 p-6 rounded-2xl border-2 border-red-300 shadow-md">
@@ -239,7 +317,6 @@
             const now = new Date().getTime();
             const distance = targetDate - now;
             
-            // 計算以天為單位
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             
             const countdownElement = document.getElementById('countdown-days');
@@ -259,8 +336,8 @@
                 countdownElement.textContent = days;
             }
         }
-
-        // *** 核心數據區塊：您只需要修改此處內容即可！ ***
+        
+        // 核心數據區塊：行程內容 (不變)
         const travelData = [
             {
                 day: "Day 1 & 2", date: "01/21 (三) - 22 (四)", loc: "啟航/抵達 Hokitika", weather: "20°C 🌤️",
@@ -328,7 +405,6 @@
         // 渲染行程卡片的函數
         function renderItinerary() {
             const container = document.getElementById('itinerary');
-            // 清空舊內容，但保留倒數計時器和公告卡片
             const countdown = document.getElementById('countdown-banner');
             const announcement = document.querySelector('.announcement-card');
             container.innerHTML = '';
@@ -369,29 +445,27 @@
             });
         }
 
-        // 切換分頁的函數
+        // 切換分頁、互動式公告卡片切換 (JS 函數保持不變)
         function switchTab(tabId, button) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             
-            // 處理底部導航欄按鈕顏色
-            document.querySelectorAll('nav button').forEach(btn => btn.style.color = 'rgb(107, 114, 128)'); // 設為灰色
+            document.querySelectorAll('nav button').forEach(btn => btn.style.color = 'rgb(107, 114, 128)');
             if (button) {
-                button.style.color = 'var(--nz-blue-dark)'; // 設為主題藍色
+                button.style.color = 'var(--nz-blue-dark)';
             }
         }
 
-        // 互動式公告卡片切換函數
         function toggleAnnouncement() {
             const content = document.getElementById('announcement-content');
             const icon = document.getElementById('toggle-icon');
 
             if (content.classList.contains('hidden')) {
                 content.classList.remove('hidden');
-                icon.classList.add('rotate-180'); // 箭頭向上
+                icon.classList.add('rotate-180');
             } else {
                 content.classList.add('hidden');
-                icon.classList.remove('rotate-180'); // 箭頭向下
+                icon.classList.remove('rotate-180');
             }
         }
 
@@ -399,7 +473,7 @@
         renderItinerary();
         updateCountdown();
         
-        // 讓倒數計時器每隔 1 小時（3600000 毫秒）更新一次，確保每天切換準確
+        // 讓倒數計時器每隔 1 小時更新一次
         setInterval(updateCountdown, 3600000); 
     </script>
 </body>
