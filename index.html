@@ -224,16 +224,16 @@
 
     <nav class="glass-nav flex justify-around py-2">
         <button onclick="switchTab('itinerary', this)" class="flex flex-col items-center text-[10px] font-bold" style="color: var(--nz-blue-dark);">
-            <i class="fa-solid fa-calendar-day text-lg mb-1"></i>行程
+            <i class="fa-solid fa-calendar-day text-lg mb-1"></i>每日行程
         </button>
         <button onclick="switchTab('info', this)" class="flex flex-col items-center text-[10px] font-bold text-gray-400">
             <i class="fa-solid fa-plane text-lg mb-1"></i>住宿航班
         </button>
         <button onclick="switchTab('shopping', this)" class="flex flex-col items-center text-[10px] font-bold text-gray-400">
-            <i class="fa-solid fa-cart-shopping text-lg mb-1"></i>購物
+            <i class="fa-solid fa-cart-shopping text-lg mb-1"></i>購物清單
         </button>
         <button onclick="switchTab('emergency', this)" class="flex flex-col items-center text-[10px] font-bold text-gray-400">
-            <i class="fa-solid fa-phone text-lg mb-1"></i>緊急
+            <i class="fa-solid fa-phone text-lg mb-1"></i>緊急聯絡
         </button>
     </nav>
 
@@ -248,7 +248,7 @@
 
         // 修改 isActive: true 即可讓該天行程出現特效
         const itineraryData = [
-            { d: 1, date: "2026.01.21 (週三)", loc: "桃園機場 → 峇厘島 → 奧克蘭", weather: "20°C 🌤️", isActive: true, acts: [{ t: "10:00", d: "TPE T2 啟程 (BR255)", tag: "trans" }, { t: "15:30", d: "抵達 DPS 轉機 3.5h", tag: "trans" }, { t: "18:50", d: "轉乘 NZ291 飛往紐西蘭", tag: "trans" }], lunch: "機上享用", dinner: "紐航晚餐", trans: "高鐵 / 長榮、紐航", tips: "NZeTA：E9963356。" },
+            { d: 1, date: "2026.01.21 (週三)", loc: "桃園機場 → 峇厘島 → 奧克蘭", weather: "20°C 🌤️", isActive: false, acts: [{ t: "10:00", d: "TPE T2 啟程 (BR255)", tag: "trans" }, { t: "15:30", d: "抵達 DPS 轉機 3.5h", tag: "trans" }, { t: "18:50", d: "轉乘 NZ291 飛往紐西蘭", tag: "trans" }], lunch: "機上享用", dinner: "紐航晚餐", trans: "高鐵 / 長榮、紐航", tips: "NZeTA：E9963356。" },
             { d: 2, date: "2026.01.22 (週四)", loc: "奧克蘭 → 基督城 → 霍基蒂卡", weather: "19°C 🌦️", isActive: false, acts: [{ t: "07:55", d: "抵達 AKL 並申報", tag: "trans" }, { t: "13:00", d: "NZ543 飛往基督城", tag: "trans" }, { t: "16:25", d: "NZ5832 飛往 HKK", tag: "trans" }, { t: "17:10", d: "入住 Railway Hotel", tag: "stay" }], lunch: "機場餐飲", dinner: "Fat Pipi Pizza", trans: "紐航 / Uber", tips: "飯店在 34 Weld St。" },
             { d: 3, date: "2026.01.23 (週五)", loc: "霍基蒂卡 → 福克斯冰河", weather: "17°C ☁️", isActive: false, acts: [{ t: "上午", d: "Hokitika 市區藝術中心", tag: "act" }, { t: "15:00", d: "搭巴士前往冰河區", tag: "trans" }, { t: "17:40", d: "入住 Ivorytowers", tag: "stay" }], lunch: "市區 Café", dinner: "Cook Saddle", trans: "Intercity Bus", tips: "下車處斜對面即是飯店。" },
             { d: 4, date: "2026.01.24 (週六)", loc: "福克斯冰河全日活動", weather: "18°C 🌤️", isActive: false, acts: [{ t: "08:50", d: "「冰河健走+直升機體驗」", tag: "act" }, { t: "下午", d: "Lake Matheson 健行", tag: "act" }], lunch: "Matheson Cafe", dinner: "鎮上餐廳", trans: "步行為主", tips: "請提前 20 分鐘報到。" },
@@ -319,3 +319,4 @@
     </script>
 </body>
 </html>
+
