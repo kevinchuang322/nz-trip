@@ -97,8 +97,9 @@
             <div id="itinerary-cards"></div>
         </div>
 
-        <div id="info" class="tab-content space-y-6">
+<div id="info" class="tab-content space-y-6">
             <h2 class="text-lg font-bold px-1">✈️ 航班與下榻飯店詳情</h2>
+            
             <section class="space-y-4">
                 <div class="card p-5 border-l-4 border-l-blue-600">
                     <h3 class="font-black text-md mb-4 flex items-center text-blue-900"><i class="fa-solid fa-plane-departure mr-2"></i>航班/航線</h3>
@@ -120,6 +121,16 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="card overflow-hidden">
+                    <div class="p-4 bg-slate-100 border-b">
+                        <h3 class="font-black text-sm text-slate-700 flex items-center">
+                            <i class="fa-solid fa-map-location-dot mr-2"></i>行程路線總覽
+                        </h3>
+                    </div>
+                    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1P7D-X54z7E6Gat6vRcl7j9Y3CskPjYw&ehbc=2E312F" width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
                 <div class="card p-5 border-l-4 border-l-green-600">
                     <h3 class="font-black text-md mb-4 flex items-center text-green-900"><i class="fa-solid fa-hotel mr-2"></i>飯店聯絡資訊</h3>
                     <div class="space-y-6 text-xs">
@@ -330,6 +341,7 @@
     </script>
 </body>
 </html>
+
 
 
 
